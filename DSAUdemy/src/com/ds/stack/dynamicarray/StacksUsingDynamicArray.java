@@ -18,9 +18,7 @@ public class StacksUsingDynamicArray<T> {
 	}
 
 	public void push(T newItem) {
-		if (isFull()) {
-			throw new StackOverflowException("Stack is not empty anymore.");
-		}
+		ensureCapacity(top + 2);
 		top = top + 1;
 		arrayStack[top] = newItem;
 	}
@@ -38,7 +36,7 @@ public class StacksUsingDynamicArray<T> {
 		int oldCapacity = getSize();
 		if (minCapacity > oldCapacity) {
 			int newCapacity = oldCapacity * 2;
-			if(newCapacity < minCapacity) {
+			if (newCapacity < minCapacity) {
 				newCapacity = minCapacity;
 			}
 			arrayStack = Arrays.copyOf(arrayStack, newCapacity);
@@ -52,7 +50,7 @@ public class StacksUsingDynamicArray<T> {
 	public Boolean isEmpty() {
 		return (top == -1);
 	}
-	
+
 	public int getSize() {
 		return arrayStack.length;
 	}
